@@ -26,12 +26,11 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                 if (palabra.length() > 0) {
                     buscarSugerencias(palabra);
                 }
-                //sugerencia por si se equivoca, little problem
-//                if (lblResultado.getText().length() == 0) {
-//                    buscarSugerencias(palabra.substring(0, palabra.length() - 2));
-//                }
-                if(lblResultado.getText().length() > 1) {
-                    lblResultado.setText(lblResultado.getText().substring(0, lblResultado.getText().length() - 2));
+                if (lblResultado.getText().length() == 0) {
+                    if (palabra.length() > 1) {
+                        palabra = palabra.substring(0, palabra.length() - 1);
+                        buscarSugerencias(palabra);
+                    }
                 }
             }
         });
@@ -83,30 +82,18 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     }
     
     public Nodo buscarUltimo(Nodo nodo, String palabra, int i) {
-        
-        System.out.println("retorno nulo?");
         if (nodo == null) return null;
-        System.out.println("retorno nodo?");
         if (nodo.lista.estaVacia()) return nodo;
-                
-        System.out.println("palabra -> " + palabra);
-        System.out.println("i -> " + i);    
-        System.out.println("i == palabra.length() - 1  -> " + (i == palabra.length() - 1));
-        System.out.println("letra == palabra.charAt(palabra.length() - 1 -> " + (nodo.letra == palabra.charAt(palabra.length() - 1)));
-        System.out.println("letra -> " + nodo.letra + " ultima -> " + palabra.charAt(palabra.length() - 1));
-        
         
         if (i == palabra.length() - 1 && nodo.letra == palabra.charAt(palabra.length() - 1)) {
             return nodo;
         }
-        System.out.println("palabra(i) " + palabra.charAt(i));
         return buscarUltimo(nodo.lista.buscarNodo(palabra.charAt(i + 1)), palabra, i + 1);
     }
     
     public void buscarSugerencias(String palabra) {
         Nodo ultimo = buscarUltimo(arbol.raiz.lista.buscarNodo(palabra.charAt(0)), palabra, 0);        
         if (ultimo != null) {
-            System.out.println(ultimo.letra);
             mostrarSugerencias(ultimo, palabra);
         }
     }
@@ -120,7 +107,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             if (!n.lista.estaVacia()) {
                 mostrarSugerencias(n, historia + n.letra);
             }
-        }        
+        }
     }
 
     public static void main(String args[]) {
