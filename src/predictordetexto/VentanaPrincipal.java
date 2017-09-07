@@ -70,20 +70,8 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    public Nodo buscarNodoUltimaLetra(Nodo n, String palabra, int i) {
-        if (n == null) {
-            return null;
-        }
-        
-        if (n.letra == palabra.charAt(palabra.length() - 1)) { // ultima letra
-            return n;
-        }
-        return buscarNodoUltimaLetra(n.lista.buscarNodo(palabra.charAt(i)), palabra, i + 1);
-    }
-    
     public Nodo buscarUltimo(Nodo nodo, String palabra, int i) {
         if (nodo == null) return null;
-        if (nodo.lista.estaVacia()) return nodo;
         
         if (i == palabra.length() - 1 && nodo.letra == palabra.charAt(palabra.length() - 1)) {
             return nodo;

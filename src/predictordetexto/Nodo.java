@@ -1,9 +1,5 @@
 package predictordetexto;
 
-/**
- *
- * @author jjcerpa
- */
 public class Nodo {
 
     public char letra;
@@ -13,14 +9,4 @@ public class Nodo {
     public Nodo(char letra) {
         this.letra = letra;
     }   
-
-    public void imprimirElems() {  
-        lista.imprimirElems();
-    }
-    
-    public String getElems() {
-        return lista.elems();        
-    }
-    
-    
 }
